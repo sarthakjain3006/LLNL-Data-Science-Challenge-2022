@@ -55,10 +55,10 @@ def print_complete():
 def train():
 
 	# Read hd5 files for training and validation
-	X_train,Y_train = hdf_read('3dcnn\postera_protease2_pos_neg_train.hdf5')
+	X_train,Y_train = hdf_read('postera_protease2_pos_neg_train.hdf5')
 	train_data = TensorDataset(X_train,Y_train)
 
-	X_val,Y_val = hdf_read('3dcnn\postera_protease2_pos_neg_val.hdf5')
+	X_val,Y_val = hdf_read('postera_protease2_pos_neg_val.hdf5')
 	val_data = TensorDataset(X_val,Y_val)
 
 	# check multi-gpus
@@ -67,7 +67,7 @@ def train():
 	if cuda_count > 1:
 		num_workers = cuda_count
 
-	batch_size = 32
+	batch_size = 128
 	epoch_count = 1
 	checkpoint_iter = 10
 	# initialize data loader
@@ -206,7 +206,7 @@ def train():
 def test():
 
 
-	X_test,Y_test = hdf_read('3dcnn\postera_protease2_pos_neg_test.hdf5')
+	X_test,Y_test = hdf_read('postera_protease2_pos_neg_test.hdf5')
 	test_data = TensorDataset(X_test,Y_test)
 
 	# check multi-gpus
